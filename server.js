@@ -78,7 +78,7 @@ app.put('/api/v1/user',(req,res) =>{
   if (!id || !password || !firstName || !lastName || !section){
       return res.status(400).send({error:false,message:'Please provide user data'});
   }else{
-      let sql = 'UPDATE users SET password = ? , first_name = ? , last_name = ? ,section = ?) where id = ?'; // ?  คือ parameter   
+      let sql = 'UPDATE users SET password = ? , first_name = ? , last_name = ? ,section = ? WHERE id = ?'; // ?  คือ parameter   
       dbCon.query(sql,[password , firstName , lastName ,section ,id ],(error,results,fields) => {
           if(error) throw error
 
@@ -103,7 +103,7 @@ app.delete('/api/v1/user',(req,res) =>{
   if (!id ){
       return res.status(400).send({error:false,message:'Please provide user id'});
   }else{
-      let sql = 'DELETE FROM users where id = ?'; // ?  คือ parameter   
+      let sql = 'DELETE FROM users WHERE id = ?'; // ?  คือ parameter   
       dbCon.query(sql,[id ],(error,results,fields) => {
           if(error) throw error
 
@@ -171,7 +171,7 @@ let species = req.body.species;
 if (!id || !petName || !age || !species ){
     return res.status(400).send({error:false,message:'Please provide user data'});
 }else{
-    let sql = 'UPDATE pets SET pet_name = ? , age = ? , species = ?) where id = ?'; // ?  คือ parameter   
+    let sql = 'UPDATE pets SET pet_name = ? , age = ? , species = ? WHERE id = ?'; // ?  คือ parameter   
     dbCon.query(sql,[petName , age , species  ,id ],(error,results,fields) => {
         if(error) throw error
 
