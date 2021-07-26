@@ -144,7 +144,7 @@ app.post('/api/v1/pet',(req,res) =>{
   let petName = req.body.petName;
   let age = req.body.age;
   let species = req.body.species;
-
+console.log(id + "--" + petName +"--"+age+"--"+species);
   //เงื่อนไขเมื่อไม่มีข้อมูลในตัวแปร 
   if (!id || !petName || !age || !species ){
       return res.status(400).send({error:false,message:'Please provide pet data'});
