@@ -17,7 +17,7 @@ const dbCon = mysql.createConnection(
     }
 );
 
-// dbCon.connect();
+dbCon.connect();
 
 // home page 
 app.get('/',(req,res)=>{
