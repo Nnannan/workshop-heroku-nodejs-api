@@ -59,7 +59,7 @@ app.post('/api/v1/user',(req,res) =>{
         dbCon.query(sql,[id ,password , firstName , lastName ,section],(error,results,fields) => {
             if(error) throw error
 
-            return res.send({error:false,data:results,message:'User successfully added.'});
+            return res.send({error:false,data:results,message:'OK User successfully added.'});
         });
     }
 });
