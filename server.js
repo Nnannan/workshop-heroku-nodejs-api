@@ -50,7 +50,7 @@ app.post('/api/v1/user',(req,res) =>{
     let firstName = req.body.firstName;
     let lastName = req.body.lastName;
     let section = req.body.section;
-    console.log(id+'-'+password+'-'+firstName+'-'+lastName+'-'+section); //ข้อมูลทืั้ insert
+    console.log(id+'-'+password+'-'+firstName+'-'+lastName+'-'+section); //ข้อมูลทื่ insert
     //เงื่อนไขเมื่อไม่มีข้อมูลในตัวแปร 
     if (!id || !password || !firstName || !lastName || !section){
         return res.status(400).send({error:false,message:'Please provide user data'});
@@ -73,12 +73,12 @@ app.put('/api/v1/user',(req,res) =>{
   let firstName = req.body.firstName;
   let lastName = req.body.lastName;
   let section = req.body.section;
-  console.log(id+'-'+password+'-'+firstName+'-'+lastName+'-'+section); //ข้อมูลทืั้ insert
+  console.log(id+'-'+password+'-'+firstName+'-'+lastName+'-'+section); //ข้อมูลทื่ insert
   //เงื่อนไขเมื่อไม่มีข้อมูลในตัวแปร 
   if (!id || !password || !firstName || !lastName || !section){
       return res.status(400).send({error:false,message:'Please provide user data'});
   }else{
-      let sql = 'UPDATE users SET password = ? , first_name = ? , last_name = ? ,section = ?) where id = ?'; //value ใส่ ? แทน Parameters ตามจำนวน columns ที่เรามี
+      let sql = 'UPDATE users SET password = ? , first_name = ? , last_name = ? ,section = ?) where id = ?'; // ?  คือ parameter   
       dbCon.query(sql,[password , firstName , lastName ,section ,id ],(error,results,fields) => {
           if(error) throw error
 
@@ -103,7 +103,7 @@ app.delete('/api/v1/user',(req,res) =>{
   if (!id ){
       return res.status(400).send({error:false,message:'Please provide user id'});
   }else{
-      let sql = 'DELETE FROM users where id = ?'; //value ใส่ ? แทน Parameters ตามจำนวน columns ที่เรามี
+      let sql = 'DELETE FROM users where id = ?'; // ?  คือ parameter   
       dbCon.query(sql,[id ],(error,results,fields) => {
           if(error) throw error
 
