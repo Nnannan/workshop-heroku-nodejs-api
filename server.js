@@ -7,17 +7,17 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-const dbCon = mysql.createConnection(
-    {
-        host:'localhost',
-        user:'root',
-        password:"so6,ko123",
-        database:'nodejs_api'
+// const dbCon = mysql.createConnection(
+//     {
+//         host:'localhost',
+//         user:'root',
+//         password:"so6,ko123",
+//         database:'nodejs_api'
 
-    }
-);
+//     }
+// );
 
-dbCon.connect();
+// dbCon.connect();
 
 // home page 
 app.get('/',(req,res)=>{
