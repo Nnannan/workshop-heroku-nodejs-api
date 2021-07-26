@@ -149,7 +149,7 @@ console.log(id + "--" + petName +"--"+age+"--"+species);
   if (!id || !petName || !age || !species ){
       return res.status(400).send({error:false,message:'Please provide pet data'});
   }else{
-      let sql = 'INSERT INTO pets (id ,pet_name , age , species  VALUES (?,?,?,?)'; //value ใส่ ? แทน Parameters ตามจำนวน columns ที่เรามี
+      let sql = 'INSERT INTO pets (id ,pet_name , age , species)  VALUES (?,?,?,?)'; //value ใส่ ? แทน Parameters ตามจำนวน columns ที่เรามี
       dbCon.query(sql,[id ,petName , age , species ],(error,results,fields) => {
           if(error) throw error
 
