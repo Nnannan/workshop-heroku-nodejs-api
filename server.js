@@ -93,7 +93,30 @@ app.put('/api/v1/user',(req,res) =>{
   }
 });
 
+//delete user by id  
+app.delete('/api/v1/user',(req,res) =>{
+   
+  //ประกาศตัวแปรมาเก็บค่ารับข้อมูลจาก Body 
+  let id = req.body.id;
+  
+  //เงื่อนไขเมื่อไม่มีข้อมูลในตัวแปร 
+  if (!id ){
+      return res.status(400).send({error:false,message:'Please provide user id'});
+  }else{
+      let sql = 'DELETE FROM users where id = ?'; //value ใส่ ? แทน Parameters ตามจำนวน columns ที่เรามี
+      dbCon.query(sql,[id ],(error,results,fields) => {
+          if(error) throw error
 
+          let message ='';
+          if(results.affectedRows == 0 ){ //ถ้าหา id  ของ user ไม่เจอ
+            message = 'User data is not found.';
+          }else{
+            message = 'Successfully users deleted.'
+          }
+          return res.send({error:false,data:results,message:message});
+      });
+  }
+});
 
 app.listen(port,() => {
   console.log(`Node JS Application is running on port ${port}`);  
