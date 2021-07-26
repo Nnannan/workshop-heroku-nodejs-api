@@ -149,7 +149,7 @@ console.log(id + "--" + petName +"--"+age+"--"+species);
   if (!id || !petName || !age || !species ){
       return res.status(400).send({error:false,message:'Please provide pet data'});
   }else{
-      let sql = 'INSERT INTO pets (id ,petName , age , species  VALUES (?,?,?,?)'; //value ใส่ ? แทน Parameters ตามจำนวน columns ที่เรามี
+      let sql = 'INSERT INTO pets (id ,pet_name , age , species  VALUES (?,?,?,?)'; //value ใส่ ? แทน Parameters ตามจำนวน columns ที่เรามี
       dbCon.query(sql,[id ,petName , age , species ],(error,results,fields) => {
           if(error) throw error
 
@@ -171,7 +171,7 @@ let species = req.body.species;
 if (!id || !petName || !age || !species ){
     return res.status(400).send({error:false,message:'Please provide user data'});
 }else{
-    let sql = 'UPDATE users SET petName = ? , age = ? , species = ?) where id = ?'; // ?  คือ parameter   
+    let sql = 'UPDATE pets SET pet_name = ? , age = ? , species = ?) where id = ?'; // ?  คือ parameter   
     dbCon.query(sql,[petName , age , species  ,id ],(error,results,fields) => {
         if(error) throw error
 
@@ -196,7 +196,7 @@ let id = req.body.id;
 if (!id ){
     return res.status(400).send({error:false,message:'Please provide pet id'});
 }else{
-    let sql = 'DELETE FROM pet where id = ?'; // ?  คือ parameter   
+    let sql = 'DELETE FROM pets where id = ?'; // ?  คือ parameter   
     dbCon.query(sql,[id ],(error,results,fields) => {
         if(error) throw error
 
