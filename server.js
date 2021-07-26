@@ -64,6 +64,35 @@ app.post('/api/v1/user',(req,res) =>{
     }
 });
 
+//update user by id  
+app.put('/api/v1/user',(req,res) =>{
+   
+  //ประกาศตัวแปรมาเก็บค่ารับข้อมูลจาก Body 
+  let id = req.body.id;
+  let password = req.body.password;
+  let firstName = req.body.firstName;
+  let lastName = req.body.lastName;
+  let section = req.body.section;
+  console.log(id+'-'+password+'-'+firstName+'-'+lastName+'-'+section); //ข้อมูลทืั้ insert
+  //เงื่อนไขเมื่อไม่มีข้อมูลในตัวแปร 
+  if (!id || !password || !firstName || !lastName || !section){
+      return res.status(400).send({error:false,message:'Please provide user data'});
+  }else{
+      let sql = 'UPDATE users SET password = ? , first_name = ? , last_name = ? ,section = ?) where id = ?'; //value ใส่ ? แทน Parameters ตามจำนวน columns ที่เรามี
+      dbCon.query(sql,[password , firstName , lastName ,section ,id ],(error,results,fields) => {
+          if(error) throw error
+
+          let message ='';
+          if(results.affectedRows == 0 ){ //ถ้าหา id  ของ user ไม่เจอ
+            message = 'User data is not found.';
+          }else{
+            message = 'Successfully users updated.'
+          }
+          return res.send({error:false,data:results,message:message});
+      });
+  }
+});
+
 
 
 app.listen(port,() => {
