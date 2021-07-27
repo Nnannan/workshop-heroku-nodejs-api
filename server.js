@@ -20,18 +20,9 @@ const dbCon = mysql.createConnection(
 dbCon.connect();
 
 // home page 
-// app.get('/',(req,res)=>{
-//     return res.send({error:false,message:'Welcome to RESTful APIs by NodeJs.'});
-// });
-
-function myFunction() {
-  document.getElementById("api").click(
-      app.get('/',(req,res)=>{
-          return res.sendStatus({error:false,message:'Welcome to RESTful APIs by NodeJs.'});
-      })
-  );
-}
-
+app.get('/',(req,res)=>{
+    return res.send({error:false,message:'Welcome to RESTful APIs by NodeJs.'});
+});
 
 // get all user
 app.get('/api/v1/users',(req,res) =>{
