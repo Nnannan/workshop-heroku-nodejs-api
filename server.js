@@ -119,21 +119,7 @@ app.delete('/api/v1/user',(req,res) =>{
 
 // ----------------------------------pet-------------------------------------------------------- 
 
-// get all pet
-app.get('/api/v1/pets',(req,res) =>{
-  dbCon.query('SELECT * FROM pets',(error,results,fields) =>{
-      if(error) throw error;
 
-      let message = '';
-      if(results === undefined || results.length == 0){
-          message = 'Pets table id empty'
-      }else{
-          message = 'Successfully get all pets.'
-      }
-
-      return res.send({error:false,data:results,message:message}); //ส่งdata มาด้วย 
-  });
-});
 
 //add new pet 
 app.post('/api/v1/pet',(req,res) =>{
@@ -209,7 +195,42 @@ if (!id ){
     });
 }
 });
+//------------------------end pets-------------------------------------
 
 app.listen(port,() => {
   console.log(`Node JS Application is running on port ${port}`);  
+});
+
+const readline = require('readline');
+
+const readInterface = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+readInterface.question('Enter your command : ', (command) => {
+    readInterface.close();
+
+    if (command == 'get') {
+        // get all pet
+        app.get('/api/v1/pets',(req,res) =>{
+            dbCon.query('SELECT * FROM pets',(error,results,fields) =>{
+                if(error) throw error;
+        
+                let message = '';
+                if(results === undefined || results.length == 0){
+                    message = 'Pets table id empty'
+                }else{
+                    message = 'Successfully get all pets.'
+                }
+                return res.send({error:false,data:results,message:message}); //ส่งdata มาด้วย 
+               
+            });
+        });
+        console.log("เข้านี้แหละ")
+    }else{
+        console.log("พิมพ์อะไรมา");
+    }
+
+    
 });
